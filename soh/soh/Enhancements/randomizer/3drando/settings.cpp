@@ -411,7 +411,7 @@ namespace Settings {
   };
 
   //Item Pool Settings
-  Option ItemPoolValue         = Option::U8  ("Item Pool",             {"Plentiful", "Balanced", "Scarce", "Minimal"},    OptionCategory::Setting, ITEMPOOL_BALANCED);
+  Option ItemPoolValue         = Option::U8  ("Item Pool",             {"Plentiful", "Balanced", "Scarce", "Scarce Major", "Minimal", "Minimal Major"},    OptionCategory::Setting, ITEMPOOL_BALANCED);
   Option IceTrapValue          = Option::U8  ("Ice Traps",             {"Off", "Normal", "Extra", "Mayhem", "Onslaught"}, OptionCategory::Setting, ICETRAPS_NORMAL);
   Option RemoveDoubleDefense   = Option::Bool("Remove Double Defense", {"No", "Yes"});
   Option ProgressiveGoronSword = Option::Bool("Prog Goron Sword",      {"Disabled", "Enabled"});
