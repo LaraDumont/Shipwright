@@ -939,8 +939,12 @@ void Randomizer::ParseRandomizerSettingsFile(const char* spoilerFileName) {
                             gSaveContext.randoSettings[index].value = RO_ITEM_POOL_BALANCED;
                         } else if(it.value() == "Scarce") {
                             gSaveContext.randoSettings[index].value = RO_ITEM_POOL_SCARCE;
+                        } else if(it.value() == "Scarce Major") {
+                            gSaveContext.randoSettings[index].value = RO_ITEM_POOL_SCARCEMAJOR;
                         } else if(it.value() == "Minimal") {
                             gSaveContext.randoSettings[index].value = RO_ITEM_POOL_MINIMAL;
+                        } else if(it.value() == "Minimal Major") {
+                            gSaveContext.randoSettings[index].value = RO_ITEM_POOL_MINIMALMAJOR;
                         }
                     case RSK_ICE_TRAPS:
                         if(it.value() == "Off") {
@@ -3104,7 +3108,7 @@ void RandomizerSettingsWindow::DrawElement() {
     static const char* randoRandomTrapDamage[3] = { "Basic", "Advanced", "Off" };
 
     // Item Pool Settings
-    static const char* randoItemPool[4] = { "Plentiful", "Balanced", "Scarce", "Minimal" };
+    static const char* randoItemPool[6] = { "Plentiful", "Balanced", "Scarce", "Scarce Major", "Minimal", "Minimal Major" };
     static const char* randoIceTraps[5] = { "Off", "Normal", "Extra", "Mayhem", "Onslaught" };
 
     static int maxKeyringCount;
@@ -4348,7 +4352,11 @@ void RandomizerSettingsWindow::DrawElement() {
                     "\n"
                     "Scarce - Some excess items are removed, including health upgrades.\n"
                     "\n"
-                    "Minimal - Most excess items are removed."
+		    "Scarce Major - Same as Scarce, but with health upgrades.\n"
+		    "\n"
+                    "Minimal - Most excess items are removed.\n"
+		    "\n"
+		    "Minimal Major - Same as Minimal, but with health upgrades."
                 );
                 UIWidgets::EnhancementCombobox("gRandomizeItemPool", randoItemPool, RO_ITEM_POOL_BALANCED);
                 UIWidgets::PaddedSeparator();
