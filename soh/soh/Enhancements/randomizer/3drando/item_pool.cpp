@@ -584,6 +584,21 @@ static void SetScarceItemPool() {
   ReplaceMaxItem(HEART_CONTAINER, 0);
 }
 
+static void SetScarceMajorItemPool() {
+  ReplaceMaxItem(PROGRESSIVE_BOMBCHUS, 3);
+  ReplaceMaxItem(BOMBCHU_5, 1);
+  ReplaceMaxItem(BOMBCHU_10, 2);
+  ReplaceMaxItem(BOMBCHU_20, 0);
+  ReplaceMaxItem(PROGRESSIVE_MAGIC_METER, 1);
+//ReplaceMaxItem(DOUBLE_DEFENSE, 0);
+  ReplaceMaxItem(PROGRESSIVE_STICK_UPGRADE, 1);
+  ReplaceMaxItem(PROGRESSIVE_NUT_UPGRADE, 1);
+  ReplaceMaxItem(PROGRESSIVE_BOW, 2);
+  ReplaceMaxItem(PROGRESSIVE_SLINGSHOT, 2);
+  ReplaceMaxItem(PROGRESSIVE_BOMB_BAG, 2);
+//ReplaceMaxItem(HEART_CONTAINER, 0);
+}
+
 static void SetMinimalItemPool() {
   ReplaceMaxItem(PROGRESSIVE_BOMBCHUS, 1);
   ReplaceMaxItem(BOMBCHU_5, 1);
@@ -600,6 +615,24 @@ static void SetMinimalItemPool() {
   ReplaceMaxItem(PIECE_OF_HEART, 0);
   // Need an extra heart container when starting with 1 heart to be able to reach 3 hearts
   ReplaceMaxItem(HEART_CONTAINER, (StartingHearts.Value<uint8_t>() == 18)? 1 : 0);
+}
+
+static void SetMinimalMajorItemPool() {
+  ReplaceMaxItem(PROGRESSIVE_BOMBCHUS, 1);
+  ReplaceMaxItem(BOMBCHU_5, 1);
+  ReplaceMaxItem(BOMBCHU_10, 0);
+  ReplaceMaxItem(BOMBCHU_20, 0);
+//ReplaceMaxItem(NAYRUS_LOVE, 0);
+  ReplaceMaxItem(PROGRESSIVE_MAGIC_METER, 1);
+//ReplaceMaxItem(DOUBLE_DEFENSE, 0);
+  ReplaceMaxItem(PROGRESSIVE_STICK_UPGRADE, 0);
+  ReplaceMaxItem(PROGRESSIVE_NUT_UPGRADE, 0);
+  ReplaceMaxItem(PROGRESSIVE_BOW, 1);
+  ReplaceMaxItem(PROGRESSIVE_SLINGSHOT, 1);
+  ReplaceMaxItem(PROGRESSIVE_BOMB_BAG, 1);
+//ReplaceMaxItem(PIECE_OF_HEART, 0);
+  // Need an extra heart container when starting with 1 heart to be able to reach 3 hearts
+//ReplaceMaxItem(HEART_CONTAINER, (StartingHearts.Value<uint8_t>() == 18)? 1 : 0);
 }
 
 void GenerateItemPool() {
@@ -1174,8 +1207,12 @@ void GenerateItemPool() {
 
   if (ItemPoolValue.Is(ITEMPOOL_SCARCE)) {
     SetScarceItemPool();
+  } else if (ItemPoolValue.Is(ITEMPOOL_SCARCEMAJOR)) {
+    SetScarceMajorItemPool();
   } else if (ItemPoolValue.Is(ITEMPOOL_MINIMAL)) {
     SetMinimalItemPool();
+  } else if (ItemPoolValue.Is(ITEMPOOL_MINIMALMAJOR)) {
+    SetMinimalMajorItemPool();
   } else if (RemoveDoubleDefense) {
     ReplaceMaxItem(DOUBLE_DEFENSE, 0);
   }
